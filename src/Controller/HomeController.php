@@ -46,7 +46,6 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        // في حالة وجود خطأ في التسجيل، نعيد نفس صفحة الـ Login مع الفورم
         return $this->render('home/login.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
