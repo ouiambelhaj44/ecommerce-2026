@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Profile - Our Store{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        {# T-akdi bli l-image smitha profile.png f public/images/ #}
+                        <img src="{{ asset('images/profile.png') }}" class="rounded-circle mb-3 border" alt="User Avatar" width="150" height="150">
+                        <h5 class="card-title">John Doe</h5>
+                        <p class="text-muted small">john.doe@email.com</p>
+                        <hr>
+                        <ul class="list-unstyled text-start ps-2">
+                            <li class="mb-3">
+                                <a href="#profile" class="text-decoration-none text-dark">
+                                    <i class="fas fa-user me-2 text-primary"></i>Profile Information
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#orders" class="text-decoration-none text-dark">
+                                    <i class="fas fa-shopping-bag me-2 text-primary"></i>My Orders
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#" class="text-decoration-none text-dark">
+                                    <i class="fas fa-cog me-2 text-primary"></i>Settings
+                                </a>
+                            </li>
+                            <li class="mt-4">
+                                <a href="{{ path('app_login') }}" class="text-decoration-none text-danger fw-bold">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card mb-4 border-0 shadow-sm" id="profile">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h5 class="mb-0 fw-bold">Profile Information</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="text-muted small text-uppercase fw-bold">Full Name</label>
+                                <p class="fs-5 mt-1">John Doe</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="text-muted small text-uppercase fw-bold">Email Address</label>
+                                <p class="fs-5 mt-1">john.doe@email.com</p>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="text-muted small text-uppercase fw-bold">Phone Number</label>
+                                <p class="fs-5 mt-1">+212 (0) 6 12 34 56 78</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="text-muted small text-uppercase fw-bold">Member Since</label>
+                                <p class="fs-5 mt-1">January 2026</p>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <label class="text-muted small text-uppercase fw-bold">Shipping Address</label>
+                                <p class="fs-6 mt-1 text-secondary">
+                                    Quartier Al Qods, Oujda<br>
+                                    Oriental Region, 60000<br>
+                                    Morocco
+                                </p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary px-4 mt-2">Edit Profile</button>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm" id="orders">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h5 class="mb-0 fw-bold">Order History</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0 align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-4">Order ID</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="ps-4 fw-bold">#ORD-2026-001</td>
+                                        <td>Feb 10, 2026</td>
+                                        <td><span class="badge rounded-pill bg-success">Delivered</span></td>
+                                        <td class="fw-bold">$139.98</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-link text-decoration-none">Details</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ps-4 fw-bold">#ORD-2026-002</td>
+                                        <td>Feb 05, 2026</td>
+                                        <td><span class="badge rounded-pill bg-info">In Transit</span></td>
+                                        <td class="fw-bold">$59.99</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-link text-decoration-none">Track</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

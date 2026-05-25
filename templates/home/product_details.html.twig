@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }} - Details{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-5" style="min-height: 75vh;">
+    <div class="row justify-content-center align-items-center g-5 mt-2">
+        
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4 bg-white text-center rounded">
+                <img src="{{ asset('image/mouse.png') }}" class="img-fluid" alt="{{ product.name }}" style="max-height: 350px; object-fit: contain;">
+            </div>
+        </div>
+        
+        <div class="col-md-7">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ path('browse_categories') }}">Categories</a></li>
+                    <li class="breadcrumb-item"><a href="{{ path('products_by_category', {'id': product.category.id}) }}">{{ product.category.name }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+                </</ol>
+            </nav>
+
+            <span class="badge bg-primary px-3 py-2 mb-2">{{ product.category.name }}</span>
+            <h1 class="display-5 fw-bold text-dark mb-2">{{ product.name }}</h1>
+            <p class="h2 text-success fw-bold mb-4">${{ product.price|number_format(2, '.', ',') }}</p>
+            
+            <hr class="my-4">
+            
+            <h5 class="fw-bold text-secondary">Description</h5>
+            <p class="text-muted lead fs-6 mb-4">{{ product.description }}</p>
+            
+            {% if product.descroption %}
+                <div class="alert alert-light border-start border-primary border-3 py-2 px-3 mb-4">
+                    <strong>Additional Info:</strong> {{ product.descroption }}
+                </div>
+            {% endif %}
+            
+            <div class="d-flex gap-3 mt-4">
+                <a href="#" class="btn btn-primary btn-lg px-5">Add to Cart</a>
+                <a href="{{ path('products_by_category', {'id': product.category.id}) }}" class="btn btn-outline-secondary btn-lg">
+                    Back to List
+                </a>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

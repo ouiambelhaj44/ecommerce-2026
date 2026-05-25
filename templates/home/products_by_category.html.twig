@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits de {{ category.name }}{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Our Products in: <span class="text-primary">{{ category.name }}</span></h1>
+        <a href="{{ path('browse_categories') }}" class="btn btn-secondary">← Back to Categories</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ asset('image/mouse.png') }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: contain;">
+                    
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2">{{ category.name }}</span>
+                        
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text fw-bold text-success">${{ product.price|number_format(2, '.', ',') }}</p>
+                        
+                        <div class="d-grid gap-2 mt-3">
+                            <a href="{{ path('product_details', {'id': product.id}) }}" class="btn btn-outline-primary">View Details</a>
+                            <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-primary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12 text-center mt-5">
+                <p class="text-muted h4">No products found in this category.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

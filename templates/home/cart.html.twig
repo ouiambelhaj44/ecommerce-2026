@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your Shopping Cart{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-5" style="min-height: 70vh;">
+    <h1 class="mb-4">Shopping Cart</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% if cart.cartItems is empty %}
+        <div class="text-center py-5 card shadow-sm">
+            <h3 class="text-muted mb-4">Your cart is currently empty!</h3>
+            <div>
+                <a href="{{ path('browse_categories') }}" class="btn btn-primary btn-lg">Continue Shopping</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card shadow-sm p-3">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart.cartItems %}
+                                <tr>
+                                    <td>
+                                        <div class="fw-bold text-dark">{{ item.product.name }}</div>
+                                        <small class="text-muted">Category: {{ item.product.category.name }}</small>
+                                    </td>
+                                    <td>${{ item.price|number_format(2, '.', ',') }}</td>
+                                    <td>
+                                        <span class="badge bg-light text-dark border p-2 px-3 fs-6">{{ item.quantity }}</span>
+                                    </td>
+                                    <td class="fw-bold">${{ (item.price * item.quantity)|number_format(2, '.', ',') }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm p-4 bg-light">
+                    <h4 class="fw-bold mb-3">Order Summary</h4>
+                    <hr>
+                    <div class="d-flex justify-content-between h5 mb-4">
+                        <span>Grand Total:</span>
+                        <span class="text-success fw-bold">${{ cart.total|number_format(2, '.', ',') }}</span>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success btn-lg">Proceed to Checkout</button>
+                        <a href="{{ path('browse_categories') }}" class="btn btn-outline-secondary">Back to Shop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
